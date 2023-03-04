@@ -40,6 +40,7 @@ function App() {
       {/* <button onClick={() => handleButtonClick()}>About</button>
 
       {currentPage ? <Home /> : <About />} */}
+      <Home/>
       <List />
     </div>
   );
