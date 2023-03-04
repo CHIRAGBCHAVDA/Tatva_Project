@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import Title from './Components/Title';
 import About from './Components/About';
 import List from './Components/List';
+import LoginForm from './Components/LoginForm';
 
 // function App() {
 //   const [page, setPage] = useState('home');
@@ -40,8 +41,8 @@ function App() {
       {/* <button onClick={() => handleButtonClick()}>About</button>
 
       {currentPage ? <Home /> : <About />} */}
-      <Home/>
-      <List />
+      {/* <Home/> */}
+      <LoginForm />
     </div>
   );
 }

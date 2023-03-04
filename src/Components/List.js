@@ -12,7 +12,6 @@ export default function List() {
   
     return (
       <div>
-        
       <Title titles={titles} />
       </div>
     );
