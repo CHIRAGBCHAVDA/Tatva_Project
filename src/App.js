@@ -45,18 +45,16 @@
 // export default App;
 
 import * as React from "react";
-import Button from "@mui/material/Button";
 import ButtonAppBar from "./ButtonAppBar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
-import Login from "./Login";
 import LoginForm from "./Components/LoginForm";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registration from "./Registration";
 import Footer from "./Footer";
-import '@fontsource/roboto/300.css';
+import "@fontsource/roboto/300.css";
 
 const styles = {
-  fontFamily: 'Roboto',
+  fontFamily: "Roboto",
 };
 
 export default function MyApp() {
@@ -74,6 +72,7 @@ export default function MyApp() {
           </Route>
           <Route path="/Register">
             <Registration />
+
           </Route>
         </Switch>
         <Footer></Footer>
