@@ -5,11 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Badge from '@mui/material/Badge';
-import { Link } from 'react-router-dom';
-
+import Badge from "@mui/material/Badge";
+import { Link } from "react-router-dom";
 
 export default function ButtonAppBar() {
   const styles = {
@@ -34,10 +32,14 @@ export default function ButtonAppBar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }} >
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        style={{ backgroundColor: "white", color: "black", padding:"0px 55px",}}
+        style={{
+          backgroundColor: "white",
+          color: "black",
+          padding: "0px 55px",
+        }}
       >
         <Toolbar>
           <IconButton
@@ -47,33 +49,42 @@ export default function ButtonAppBar() {
             aria-label="menu"
             back
             sx={{ mr: 1 }}
-          >
-           
-          </IconButton>
-          
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tV6t14yHTNfrJ49kuDtorFtJ6XYSl7cclWvmiRvp&s" alt="Logo" style={{ height: '41px' }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            
-          </Typography>
+          ></IconButton>
+
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tV6t14yHTNfrJ49kuDtorFtJ6XYSl7cclWvmiRvp&s"
+            alt="Logo"
+            style={{ height: "41px" }}
+          />
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          ></Typography>
           <Button sx={{ textTransform: "none" }} style={styles.button}>
-          <Link to="/Login">Login</Link>
+            <Link to="/Login">Login</Link>
           </Button>
           <span style={styles.verticalLine}></span>
           <Button sx={{ textTransform: "none" }} style={styles.button}>
-          <Link to="/Register">Register</Link>
+            <Link to="/Register">Register</Link>
           </Button>
-          <Button sx={{ textTransform: "none" }}
+          <Button
+            sx={{ textTransform: "none" }}
             variant="outlined"
-            style={{ borderColor: "black", color: "black",fontSize:"14px",padding:"3px 7px" }}
+            style={{
+              borderColor: "black",
+              color: "black",
+              fontSize: "14px",
+              padding: "3px 7px",
+            }}
           >
-          <IconButton aria-label="cart">
-          <Badge badgeContent={4} color="error">
-            <ShoppingCartIcon />
-          </Badge>
-        </IconButton>
-          &nbsp;  Cart
+            <IconButton aria-label="cart">
+              <Badge badgeContent={4} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+            &nbsp; Cart
           </Button>
-         
         </Toolbar>
       </AppBar>
     </Box>

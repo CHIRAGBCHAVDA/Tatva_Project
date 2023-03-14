@@ -52,6 +52,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registration from "./Registration";
 import Footer from "./Footer";
 import "@fontsource/roboto/300.css";
+import ProductPage from "./ProductPage";
 
 const styles = {
   fontFamily: "Roboto",
@@ -63,9 +64,9 @@ export default function MyApp() {
       <Router>
         <ButtonAppBar></ButtonAppBar>
         <PrimarySearchAppBar></PrimarySearchAppBar>
-        <Switch>
+         <Switch>
           <Route exact path="/">
-            {/* Home page component */}
+             Home page component 
           </Route>
           <Route path="/Login">
             <LoginForm />
@@ -74,7 +75,9 @@ export default function MyApp() {
             <Registration />
 
           </Route>
-        </Switch>
+           </Switch>
+
+           <ProductPage></ProductPage>
         <Footer></Footer>
       </Router>
     </div>

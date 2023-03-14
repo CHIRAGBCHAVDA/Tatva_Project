@@ -7,32 +7,43 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
 const LoginForm = () => {
-  const [uname, setUname] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [mail, setMail] = useState("");
 
-  const UnameChange = (event) => {
-    setUname(event.target.value);
-  };
 
-  const PwdChange = (event) => {
-    setPwd(event.target.value);
-  };
+  // const UnameChange = (event) => {
+  //   setUname(event.target.value);
+  // };
 
-  const MailChange = (event) => {
-    setMail(event.target.value);
-  };
+  // const PwdChange = (event) => {
+  //   setPwd(event.target.value);
+  // };
 
-  const handleForm = (event) => {
-    event.preventDefault();
+  // const MailChange = (event) => {
+  //   setMail(event.target.value);
+  // };
 
-    alert(`Username: ${uname} \nEmail: ${mail} \nPassword: ${pwd}`);
-    setUname("");
-    setPwd("");
-    setMail("");
-  };
+  // const handleForm = (event) => {
+  //   event.preventDefault();
+
+  //   alert(`Username: ${uname} \nEmail: ${mail} \nPassword: ${pwd}`);
+  //   setUname("");
+  //   setPwd("");
+  //   setMail("");
+  // };
+
+  const handleForm = (data) => {
+    console.log("Form is submitted", data);
+  }
+
+  const validationSchema = Yup.object().shape ({
+    email: Yup.string().email("Invalid Email").required("Email must not be empty"),
+    password: Yup.string().min(8,"Minimum 8 characters required").required("Enter Password"),
+  
+  })
+
 
   return (
     // <div className="form-container">
@@ -54,7 +65,16 @@ const LoginForm = () => {
     // </div>
 
     <div>
-      <React.Fragment>
+      <Formik
+      initialValues={{email:"", Loginpassword:""}}
+      validationSchema={validationSchema}
+      onSubmit={handleForm}>
+      {({errors, touched, handleChange, handleBlur, handleSubmit})=> (
+        <form onSubmit={handleSubmit}>
+        <div style={{ width:"100%", alignContent:"center",justifyContent:"center"}}>
+        <div style={{width: "100%", display:"flex"}}>
+        
+        <React.Fragment>
         <CssBaseline />
         <Container fixed>
           <Typography
@@ -88,7 +108,7 @@ const LoginForm = () => {
                     style={{
                       paddingTop: "20px",
                       fontSize: "15px",
-                      color: "lightgray",
+                      color: "gray",
                     }}
                   >
                     Registration is free and easy
@@ -155,10 +175,10 @@ const LoginForm = () => {
                     paddingTop: "20px",
                     paddingBottom: "20px",
                     fontSize: "15px",
-                    color: "lightgray",
+                    color: "gray",
                   }}
                 >
-                  if you have an account with us, please log in.
+                  If you have an account with us, please log in.
                 </Typography>
 
                 <Grid>
@@ -172,7 +192,8 @@ const LoginForm = () => {
                     >
                       Email Address*
                     </Typography>
-                    <input type="text" />
+                    <input type="email" name="email" id="email" label="Email" onChange={handleChange} onBlur={handleBlur} />
+                    {touched.email && errors && errors.email}
                   </label>
                 </Grid>
 
@@ -187,9 +208,11 @@ const LoginForm = () => {
                     >
                       Password*
                     </Typography>
-                    <input type="email" />
+                    <input type="password" id="password" name="password" label="Password" onChange={handleChange} onBlur={handleBlur}/>
+                    {touched.password && errors && errors.password}
                   </label>
                 </Grid>
+                
                 <Button
                   variant="contained"
                   color="error"
@@ -198,6 +221,7 @@ const LoginForm = () => {
                     alignItems: "center",
                     marginBottom: "80px",
                   }}
+                  type="submit"
 
                   style={{height:"45px" , width:"100px"}}
                  
@@ -209,6 +233,15 @@ const LoginForm = () => {
           </Box>
         </Container>
       </React.Fragment>
+        </div>
+        
+        
+        </div>
+        
+        </form>
+       )}
+      
+      </Formik>
     </div>
   );
 };
