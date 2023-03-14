@@ -208,7 +208,7 @@ const Registration = () => {
                           >
                             Confirm Password*
                           </Typography>
-                          <input type="password" name="confirmPassword" onChange={handleChange} onBlur={handleBlur}/>
+                          <input type="password" name="confirmPassword" id="confirmPassword" label="ConfirmPassword" onChange={handleChange} onBlur={handleBlur}/>
                           {touched.confirmPassword && errors && errors.confirmPassword}
                         </label>
                       </Grid>
