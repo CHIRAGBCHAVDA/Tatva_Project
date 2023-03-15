@@ -11,17 +11,12 @@
   color: #666;
 }
 
-
-
-
-
-
 label {
   display: block;
   margin-bottom: 10px;
 }
 
-input {
+input{
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -36,4 +31,12 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
 }

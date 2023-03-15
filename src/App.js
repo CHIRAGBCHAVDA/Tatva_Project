@@ -53,6 +53,7 @@ import Registration from "./Registration";
 import Footer from "./Footer";
 import "@fontsource/roboto/300.css";
 import ProductPage from "./ProductPage";
+import EditProduct from "./EditProduct";
 
 const styles = {
   fontFamily: "Roboto",
@@ -77,7 +78,8 @@ export default function MyApp() {
           </Route>
            </Switch>
 
-           <ProductPage></ProductPage>
+  {/*<ProductPage></ProductPage> 
+  <EditProduct></EditProduct> */}
         <Footer></Footer>
       </Router>
     </div>

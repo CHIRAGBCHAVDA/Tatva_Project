@@ -9,10 +9,39 @@ import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginForm = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
   const handleForm = (data) => {
     console.log("Form is submitted", data);
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.get(
+        `https://jsonplaceholder.typicode.com/users?username=${email}`
+      );
+
+      if (response.data.length === 0) {
+        toast.error('User not found');
+        return;
+      }
+
+      const user = response.data[0];
+
+      // check if password is correct and perform login
+      // ...
+    } catch (error) {
+      console.log(error);
+      toast.error('An error occurred');
+    }
   };
 
   const validationSchema = Yup.object().shape({
@@ -27,7 +56,7 @@ const LoginForm = () => {
   return (
     <div>
       <Formik
-        initialValues={{ email: "", Loginpassword: "" }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={handleForm}
       >
@@ -123,6 +152,7 @@ const LoginForm = () => {
                                 alignItems: "center",
                                 marginBottom: "80px",
                               }}
+                              type="submit"
                               style={{ height: "45px", width: "220px" }}
                             >
                               Create an Account
@@ -210,11 +240,13 @@ const LoginForm = () => {
                             }}
                             type="submit"
                             style={{ height: "45px", width: "100px" }}
+                            
                           >
                             Login
                           </Button>
                         </Grid>
                       </Grid>
+                      <ToastContainer/>
                     </Box>
                   </Container>
                 </React.Fragment>
