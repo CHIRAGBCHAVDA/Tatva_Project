@@ -38,12 +38,6 @@ export default function MyApp() {
 
           </Route>
            </Switch>
-           <EditProduct/>
-           <ProductPage/>
-           <ProductListing/>
-
-  {/*<ProductPage></ProductPage> 
-  <EditProduct></EditProduct> */}
         <Footer></Footer>
       </Router>
     </div>

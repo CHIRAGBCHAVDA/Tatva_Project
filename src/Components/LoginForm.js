@@ -14,8 +14,6 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Stack from "@mui/material/Stack";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 function handleClick(event) {
   event.preventDefault();
@@ -34,30 +32,24 @@ const LoginForm = () => {
     
   ];
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleForm = async (data) => {
-    console.log("Form is submitted", data);
+  const handleForm = async (values, { resetForm }) => {
+    console.log("Form is submitted", values);
     try {
-      const response = await axios.get(
-        `https://jsonplaceholder.typicode.com/users?username=${email}`
-      );
-
-      if (response.data.length === 0) {
-        toast.error("User not found");
-        return;
+      const response = await axios.get(`http://localhost:8000/users?email=${values.email}&password=${values.password}`);
+      if (response.data.length > 0) {
+        setIsLoggedIn(true);
+        toast.success('Login successful!', { autoClose: 2000 });
+        resetForm();
+        
+      } else {
+        toast.error('Invalid email or password!', { autoClose: 2000 });
       }
-
-      const user = response.data[0];
-
-      // check if password is correct and perform login
-      // ...
     } catch (error) {
       console.log(error);
-      toast.error("An error occurred");
     }
-  };
+  }
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -75,7 +67,7 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleForm}
       >
-        {({ errors, touched, handleChange, handleBlur, handleSubmit }) => (
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div
               style={{
@@ -234,6 +226,7 @@ const LoginForm = () => {
                                 label="Email"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                value={values.email}
                               />
                               {touched.email && errors && errors.email}
                             </label>
@@ -259,6 +252,7 @@ const LoginForm = () => {
                                 label="Password"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                value={values.password}
                               />
                               {touched.password && errors && errors.password}
                             </label>
@@ -288,6 +282,7 @@ const LoginForm = () => {
           </form>
         )}
       </Formik>
+      {isLoggedIn}
     </div>
   );
 };
