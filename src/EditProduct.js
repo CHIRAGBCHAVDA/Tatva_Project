@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Divider from "@mui/material/Divider";
 
 function EditProduct() {
   const handleEditPdtForm = (data) => {
@@ -77,6 +78,8 @@ function EditProduct() {
                     >
                       Edit Product
                     </Typography>
+                    <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto", marginBottom:"50px"}}></Divider>
+
                     <Box sx={{ width: "100%", paddingTop: "20px" }}>
                       <Grid
                         container

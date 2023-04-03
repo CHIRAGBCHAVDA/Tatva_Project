@@ -10,27 +10,42 @@ import Button from "@mui/material/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Stack from "@mui/material/Stack";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
+function handleClick(event) {
+  event.preventDefault();
+  console.info("You clicked a breadcrumb.");
+}
 
 const LoginForm = () => {
+  const breadcrumbs = [
+    
+    <Typography key="1" color="text.primary">
+      Home
+    </Typography>,
+    <Typography key="2" color="error">
+      Login
+    </Typography>,
+    
+  ];
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const handleForm = (data) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleForm = async (data) => {
     console.log("Form is submitted", data);
-  };
-
-  const handleLogin = async () => {
     try {
       const response = await axios.get(
         `https://jsonplaceholder.typicode.com/users?username=${email}`
       );
 
       if (response.data.length === 0) {
-        toast.error('User not found');
+        toast.error("User not found");
         return;
       }
 
@@ -40,7 +55,7 @@ const LoginForm = () => {
       // ...
     } catch (error) {
       console.log(error);
-      toast.error('An error occurred');
+      toast.error("An error occurred");
     }
   };
 
@@ -72,7 +87,23 @@ const LoginForm = () => {
               <div style={{ width: "100%", display: "flex" }}>
                 <React.Fragment>
                   <CssBaseline />
-                  <Container fixed>
+                  <Container>
+                    <Grid container justifyContent="center" alignItems="center">
+                    <Breadcrumbs
+                      separator="›"
+                      aria-label="breadcrumb"
+                      sx={{textAlign:"center", my: 'auto'}}
+                      style={{
+                        marginTop: "20px",
+                        alignContent:"center",
+                        margin:"auto",
+                        justifyContent:"center"
+                      }}
+                    >
+                      {breadcrumbs}
+                    </Breadcrumbs>
+
+                    </Grid>
                     <Typography
                       variant="h3"
                       style={{
@@ -84,6 +115,8 @@ const LoginForm = () => {
                     >
                       Login or Create an Account
                     </Typography>
+                    <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto"}}></Divider>
+
                     <Box sx={{ width: "100%", paddingTop: "20px" }}>
                       <Grid
                         container
@@ -152,10 +185,11 @@ const LoginForm = () => {
                                 alignItems: "center",
                                 marginBottom: "80px",
                               }}
-                              type="submit"
                               style={{ height: "45px", width: "220px" }}
                             >
-                              Create an Account
+                              <Link to="/Register" style={{ color: "white" }}>
+                                Create an account
+                              </Link>
                             </Button>
                           </div>
                         </Grid>
@@ -240,13 +274,12 @@ const LoginForm = () => {
                             }}
                             type="submit"
                             style={{ height: "45px", width: "100px" }}
-                            
                           >
                             Login
                           </Button>
                         </Grid>
                       </Grid>
-                      <ToastContainer/>
+                      <ToastContainer />
                     </Box>
                   </Container>
                 </React.Fragment>

@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "firstName": "Harimati",
+      "lastName": "Ghoghari",
+      "email": "harimatighoghari2003@gmail.com",
+      "password": "password1",
+      "id": 1
+    }
+  ]
+}

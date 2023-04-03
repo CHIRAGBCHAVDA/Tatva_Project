@@ -12,56 +12,71 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 const Registration = () => {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "left",
-    color: theme.palette.text.secondary,
-  }));
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: "left",
+  //   color: theme.palette.text.secondary,
+  // }));
 
-  const handleregistrationForm = (data) => {
-    console.log("Form is submitted", data);
+  const handleregistrationForm = (values) => {
+    console.log("Form is submitted", values);
+    const user = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password,
+    };
+
+    fetch("http://localhost:8000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   };
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup
-      .string()
-      .required('First name is required.'),
-    lastName: Yup
-      .string()
-      .required('Last name is required.'),
-    email: Yup
-      .string()
-      .email('Invalid email address.')
-      .required('Email is required.'),
-    password: Yup
-      .string()
-      .min(8, 'Password must be at least 8 characters.')
-      .required('Password is required.'),
-    confirmPassword: Yup
-      .string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match.')
-      .required('Confirm password is required.'),
+    firstName: Yup.string().required("First name is required."),
+    lastName: Yup.string().required("Last name is required."),
+    email: Yup.string()
+      .email("Invalid email address.")
+      .required("Email is required."),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters.")
+      .required("Password is required."),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match.")
+      .required("Confirm password is required."),
   });
 
-  
   return (
     <div>
       <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      }}
-      validationSchema={validationSchema}
-      onSubmit={handleregistrationForm}
-      
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={handleregistrationForm}
       >
-        {({ errors, touched, handleChange, handleBlur, handleregistrationSubmit }) => (
-          <form onSubmit={handleregistrationSubmit}>
+        {({
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+        }) => (
+          <form onSubmit={handleSubmit}>
             <div
               style={{
                 width: "100%",
@@ -85,10 +100,18 @@ const Registration = () => {
                   >
                     Login or Create an Account
                   </Typography>
-                  <Typography
-                    variant="h6"
-                    style={{ paddingTop: "50px", paddingBottom: "20px" }}
-                  >
+                  <Divider
+                    style={{
+                      borderColor: "red",
+                      borderBlockEndWidth: "3px",
+                      borderRadius: "10px",
+                      width: "190px",
+                      margin: "auto",
+                      marginBottom: "50px",
+                    }}
+                  ></Divider>
+
+                  <Typography variant="h6" style={{ paddingBottom: "20px" }}>
                     Personal Information
                   </Typography>
                   <Divider sx={{ bgcolor: "grey.500", height: 2 }} />
@@ -124,9 +147,15 @@ const Registration = () => {
                               First Name*
                             </Typography>
                             <input
-                              type="text" name="firstName" id="firstName" label="Firstame" onChange={handleChange} onBlur={handleBlur}
+                              type="text"
+                              name="firstName"
+                              id="firstName"
+                              label="Firstame"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.firstName}
                             />
-                            { touched.firstName && errors  && errors.firstName}
+                            {touched.firstName && errors && errors.firstName}
                           </label>
                         </Grid>
                         <Grid item xs={6}>
@@ -141,7 +170,13 @@ const Registration = () => {
                               Last Name*
                             </Typography>
                             <input
-                              type="text" name="lastName" id="lastName" label="LastName" onChange={handleChange} onBlur={handleBlur}
+                              type="text"
+                              name="lastName"
+                              id="lastName"
+                              label="LastName"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.lastName}
                             />
                             {touched.lastName && errors && errors.lastName}
                           </label>
@@ -160,7 +195,13 @@ const Registration = () => {
                             Email*
                           </Typography>
                           <input
-                            type="email" name="email" id="email" label="Email" onChange={handleChange} onBlur={handleBlur}
+                            type="email"
+                            name="email"
+                            id="email"
+                            label="Email"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.email}
                           />
                           {touched.email && errors && errors.email}
                         </label>
@@ -193,7 +234,15 @@ const Registration = () => {
                           >
                             Password*
                           </Typography>
-                          <input type="password" name="password" id="password" label="Password" onChange={handleChange} onBlur={handleBlur}/>
+                          <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            label="Password"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.password}
+                          />
                           {touched.password && errors && errors.password}
                         </label>
                       </Grid>
@@ -208,8 +257,18 @@ const Registration = () => {
                           >
                             Confirm Password*
                           </Typography>
-                          <input type="password" name="confirmPassword" id="confirmPassword" label="ConfirmPassword" onChange={handleChange} onBlur={handleBlur}/>
-                          {touched.confirmPassword && errors && errors.confirmPassword}
+                          <input
+                            type="password"
+                            name="confirmPassword"
+                            id="confirmPassword"
+                            label="ConfirmPassword"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.confirmPassword}
+                          />
+                          {touched.confirmPassword &&
+                            errors &&
+                            errors.confirmPassword}
                         </label>
                       </Grid>
                     </Grid>

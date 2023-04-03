@@ -1,49 +1,3 @@
-// import React,{useState} from 'react';
-// import './App.css';
-// import Home from './Components/Home';
-// import Title from './Components/Title';
-// import About from './Components/About';
-// import List from './Components/List';
-// import LoginForm from './Components/LoginForm';
-
-// // function App() {
-// //   const [page, setPage] = useState('home');
-
-// //   const handleHomeClick = () => {
-// //     setPage('home');
-// //   };
-
-// //   const handleAboutClick = () => {
-// //     setPage('about');
-// //   };
-
-// //   return (
-// //     <div>
-// //       <nav>
-// //         <button onClick={handleHomeClick}>Home</button>
-// //         <button onClick={handleAboutClick}>About</button>
-// //       </nav>
-
-// //       {page === 'home' && <Home />}
-// //       {page === 'about' && <About />}
-// //     </div>
-// //   );
-// // }
-// function App() {
-
-//   return (
-//     <div>
-
-//       {/* <button onClick={() => handleButtonClick()}>About</button>
-
-//       {currentPage ? <Home /> : <About />} */}
-//       {/* <Home/> */}
-//       <LoginForm />
-//     </div>
-//   );
-// }
-// export default App;
-
 import * as React from "react";
 import ButtonAppBar from "./ButtonAppBar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
@@ -54,6 +8,8 @@ import Footer from "./Footer";
 import "@fontsource/roboto/300.css";
 import ProductPage from "./ProductPage";
 import EditProduct from "./EditProduct";
+import ProductListing from "./ProductListing";
+import LoggedInHeader from "./Components/LoggedInHeader";
 
 const styles = {
   fontFamily: "Roboto",
@@ -67,16 +23,24 @@ export default function MyApp() {
         <PrimarySearchAppBar></PrimarySearchAppBar>
          <Switch>
           <Route exact path="/">
-             Home page component 
+             <LoginForm/> 
           </Route>
           <Route path="/Login">
             <LoginForm />
+            <Switch>
+            <Route path="/Register">
+            <Registration/>
+            </Route>
+            </Switch>
           </Route>
           <Route path="/Register">
             <Registration />
 
           </Route>
            </Switch>
+           <EditProduct/>
+           <ProductPage/>
+           <ProductListing/>
 
   {/*<ProductPage></ProductPage> 
   <EditProduct></EditProduct> */}

@@ -10,7 +10,7 @@ import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 
-export default function ButtonAppBar() {
+export default function LoggedInHeader() {
 
   const styles = {
     buttonContainer: {
@@ -64,11 +64,11 @@ export default function ButtonAppBar() {
             sx={{ flexGrow: 1 }}
           ></Typography>
           <Button sx={{ textTransform: "none" }} style={styles.button}>
-            <Link to="/Login">Login</Link>
+            <Link to="/Update">Books</Link>
           </Button>
           <span style={styles.verticalLine}></span>
           <Button sx={{ textTransform: "none" }} style={styles.button}>
-            <Link to="/Register">Register</Link>
+            <Link to="/Update">Update Books</Link>
           </Button>
           <Button
             sx={{ textTransform: "none" }}
@@ -86,6 +86,18 @@ export default function ButtonAppBar() {
               </Badge>
             </IconButton>
             &nbsp; Cart
+          </Button>
+          <Button
+            sx={{ textTransform: "none" }}
+            variant="outlined"
+            style={{
+              borderColor: "black",
+              color: "black",
+              fontSize: "14px",
+              padding: "3px 7px",
+            }}
+          >   
+            &nbsp; Log Out
           </Button>
         </Toolbar>
       </AppBar>

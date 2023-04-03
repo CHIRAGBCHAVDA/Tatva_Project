@@ -16,6 +16,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import Divider from "@mui/material/Divider";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -31,6 +33,10 @@ const Search = styled("div")(({ theme }) => ({
     width: "auto",
   },
 }));
+
+const inputStyle = {
+  fontStyle: "italic"
+};
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -126,6 +132,8 @@ function ProductPage() {
           >
             Product Page
           </Typography>
+          
+          <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto", marginBottom:"50px"}}></Divider>
 
           <Box sx={{ flexGrow: 1 }}>
             <AppBar
@@ -143,11 +151,12 @@ function ProductPage() {
             >
               <Toolbar>
                 <Search
-                  style={{ border: "1px solid black", paddingRight: "10px" }}
+                  style={{ border: "1px solid gray", paddingRight: "10px" }}
                 >
                   <StyledInputBase
                     placeholder="Search…"
                     inputProps={{ "aria-label": "search" }}
+                    style={inputStyle}
                   />
                 </Search>
 
