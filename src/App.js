@@ -10,18 +10,26 @@ import ProductPage from "./ProductPage";
 import EditProduct from "./EditProduct";
 import ProductListing from "./ProductListing";
 import LoggedInHeader from "./Components/LoggedInHeader";
+import Paper from '@mui/material/Paper';
 
-const styles = {
-  fontFamily: "Roboto",
-};
+
+
+function MyComponent() {
+  
+
+  
+}
+
+
+
+
 
 export default function MyApp() {
   return (
-    <div>
+    <div class="container">
       <Router>
         <ButtonAppBar></ButtonAppBar>
-        <PrimarySearchAppBar></PrimarySearchAppBar>
-         <Switch>
+         {/* <Switch>
           <Route exact path="/">
              <LoginForm/> 
           </Route>
@@ -37,7 +45,12 @@ export default function MyApp() {
             <Registration />
 
           </Route>
-           </Switch>
+           </Switch> */}
+
+           <LoginForm/>
+           <EditProduct />
+           <ProductPage />
+           <ProductListing />
         <Footer></Footer>
       </Router>
     </div>

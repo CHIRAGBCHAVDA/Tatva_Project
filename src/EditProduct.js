@@ -76,7 +76,7 @@ function EditProduct() {
                         fontWeight: "bold",
                       }}
                     >
-                      Edit Product
+                      Apply Application
                     </Typography>
                     <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto", marginBottom:"50px"}}></Divider>
 
@@ -96,7 +96,7 @@ function EditProduct() {
                                 fontSize: "15px",
                               }}
                             >
-                              First Name*
+                              Subject*
                             </Typography>
                             <input
                               type="text"
@@ -118,7 +118,7 @@ function EditProduct() {
                                 fontSize: "15px",
                               }}
                             >
-                              Last Name*
+                              Description*
                             </Typography>
                             <input
                               type="text"
@@ -140,7 +140,7 @@ function EditProduct() {
                         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                         style={{ marginBottom: "20px" }}
                       >
-                        <Grid item xs={6}>
+                        <Grid item xs={12}>
                           <label>
                             <Typography
                               variant="h6"
@@ -149,17 +149,16 @@ function EditProduct() {
                                 fontSize: "15px",
                               }}
                             >
-                              Shop by categories
+                              Severity Level
                             </Typography>
                             <select id="catergories" name="description">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
+                              <option value="1">Urgent</option>
+                              <option value="2">Moderate</option>
+                              <option value="3">Minor</option>
                             </select>
                           </label>
                         </Grid>
-                        <Grid item xs={6}>
+                        {/* <Grid item xs={6}>
                           <label>
                             <Typography
                               variant="h6"
@@ -168,7 +167,7 @@ function EditProduct() {
                                 fontSize: "15px",
                               }}
                             >
-                              Description
+                              Releated With
                             </Typography>
                             <input
                               type="text"
@@ -179,7 +178,7 @@ function EditProduct() {
                               onBlur={handleBlur}
                             />
                           </label>
-                        </Grid>
+                        </Grid> */}
                       </Grid>
                     </Box>
                     <Box sx={{ width: "100%", paddingTop: "20px" }}>

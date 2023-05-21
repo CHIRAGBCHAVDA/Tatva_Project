@@ -14,22 +14,32 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
+import ProductListing from "../ProductListing";
 
 function handleClick(event) {
   event.preventDefault();
   console.info("You clicked a breadcrumb.");
 }
+const options = ['Option 1', 'Option 2'];
 
 const LoginForm = () => {
+
+  const [role, setRole] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
+  };
+
   const breadcrumbs = [
-    
+
     <Typography key="1" color="text.primary">
       Home
     </Typography>,
     <Typography key="2" color="error">
       Login
     </Typography>,
-    
+
   ];
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,12 +52,28 @@ const LoginForm = () => {
         setIsLoggedIn(true);
         toast.success('Login successful!', { autoClose: 2000 });
         resetForm();
-        
+
       } else {
         toast.error('Invalid email or password!', { autoClose: 2000 });
       }
     } catch (error) {
       console.log(error);
+    }
+    if (role) {
+      setLoggedIn(true);
+    }
+  };
+
+  if (loggedIn) {
+    // Render different pages based on selected role
+    if (role === 'Principal') {
+      return <ProductListing />;
+    }
+    if (role === 'HOD') {
+      return <ProductListing />;
+    }
+    if (role === 'Professor') {
+      return <ProductListing />;
     }
   }
 
@@ -61,7 +87,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div>
+    <div class="container">
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
@@ -80,22 +106,6 @@ const LoginForm = () => {
                 <React.Fragment>
                   <CssBaseline />
                   <Container>
-                    <Grid container justifyContent="center" alignItems="center">
-                    <Breadcrumbs
-                      separator="›"
-                      aria-label="breadcrumb"
-                      sx={{textAlign:"center", my: 'auto'}}
-                      style={{
-                        marginTop: "20px",
-                        alignContent:"center",
-                        margin:"auto",
-                        justifyContent:"center"
-                      }}
-                    >
-                      {breadcrumbs}
-                    </Breadcrumbs>
-
-                    </Grid>
                     <Typography
                       variant="h3"
                       style={{
@@ -107,7 +117,7 @@ const LoginForm = () => {
                     >
                       Login or Create an Account
                     </Typography>
-                    <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto"}}></Divider>
+                    <Divider style={{ borderColor: "red", borderBlockEndWidth: "3px", borderRadius: "10px", width: "190px", margin: "auto" }}></Divider>
 
                     <Box sx={{ width: "100%", paddingTop: "20px" }}>
                       <Grid
@@ -123,7 +133,7 @@ const LoginForm = () => {
                               paddingBottom: "20px",
                             }}
                           >
-                            New Customer
+                            New Users
                           </Typography>
                           <Divider sx={{ bgcolor: "grey.500", height: 2 }} />
                           <div style={{ fontSize: "15px" }}>
@@ -146,7 +156,7 @@ const LoginForm = () => {
                                 paddingLeft: "0px",
                               }}
                             >
-                              <li>Faster Checkout</li>
+                              <li>Digital Document</li>
                             </Typography>
 
                             <Typography
@@ -156,7 +166,7 @@ const LoginForm = () => {
                                 paddingTop: "15px",
                               }}
                             >
-                              <li>Save multiple shipping addresses</li>
+                              <li>Digital Signatures and Approvals</li>
                             </Typography>
                             <Typography
                               variant="h6"
@@ -167,7 +177,7 @@ const LoginForm = () => {
                                 paddingLeft: "0px",
                               }}
                             >
-                              <li>View and track orders and more</li>
+                              <li>Time Saving:</li>
                             </Typography>
                             <Button
                               variant="contained"
@@ -193,7 +203,7 @@ const LoginForm = () => {
                               paddingBottom: "20px",
                             }}
                           >
-                            Registered Customers
+                            Registered Users
                           </Typography>
                           <Divider sx={{ bgcolor: "grey.500", height: 2 }} />
                           <Typography
@@ -255,6 +265,36 @@ const LoginForm = () => {
                                 value={values.password}
                               />
                               {touched.password && errors && errors.password}
+                            </label>
+                          </Grid>
+
+                          <Grid
+                            style={{ marginTop: "40px", marginBottom: "60px" }}
+                          >
+                            <label>
+                              <Typography
+                                variant="h6"
+                                style={{
+                                  paddingBottom: "15px",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                Role*
+                              </Typography>
+
+                              <select
+                                id="role"
+                                name="role"
+                                onChange={handleRoleChange}
+                                onBlur={handleBlur}
+                                value={values.role}
+                              >
+                                <option value="">Select a role</option>
+                                <option value="Principal">Principal</option>
+                                <option value="HOD">HOD</option>
+                                <option value="Professor">Professor</option>
+                              </select>
+                              {touched.role && errors && errors.role}
                             </label>
                           </Grid>
 

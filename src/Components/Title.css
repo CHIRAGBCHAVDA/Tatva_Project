@@ -1,11 +1,10 @@
 .title {
   font-size: 24px;
   font-weight: bold;
-  color: #110101;
+  color: #e4dfdf;
   margin-bottom: 10px;
   background-color: aqua;
 }
-
 .description {
   font-size: 16px;
   color: #666;
@@ -35,8 +34,18 @@ button {
 
 select {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #eee5e5;
   border-radius: 5px;
   margin-bottom: 20px;
   width: 100%;
+}
+.container {
+  background-color: #f1f1f1;
+}
+
+/* Background image */
+.container {
+  background-image: url('https://theminimalistvegan.com/wp-content/uploads/2019/06/A-Minimalists-Approach-To-Going-Paperless-At-Home.jpg');
+  background-size: cover;
+  background-position: center;
 }

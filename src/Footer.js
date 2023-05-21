@@ -21,13 +21,11 @@ function Footer() {
           }}
         >
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tV6t14yHTNfrJ49kuDtorFtJ6XYSl7cclWvmiRvp&s"
+            src="https://www.marcotls.eu/wp-content/uploads/2020/01/paperless_3-1024x768.jpg"
             alt="Logo"
-            style={{ height: "41px" }}
+            style={{ height: "150px", width:"300px" }}
           />
-          <p style={{ marginTop: "10px", font: "10px", color: "gray" }}>
-            &copy; 2015 Tatvasoft.com. All Rights Reserved
-          </p>
+
         </Box>
       </React.Fragment>
     </div>

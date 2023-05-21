@@ -39,3 +39,14 @@ body{
     transform: rotate(360deg);
   }
 }
+
+.container {
+  background-color: #f1f1f1;
+}
+
+/* Background image */
+.container {
+  background-image: url('https://img.freepik.com/premium-photo/learning-from-books-textbooks-internet-brings-new-ideas_371307-15.jpg');
+  background-size: cover;
+  background-position: center;
+}

@@ -70,23 +70,7 @@ export default function LoggedInHeader() {
           <Button sx={{ textTransform: "none" }} style={styles.button}>
             <Link to="/Update">Update Books</Link>
           </Button>
-          <Button
-            sx={{ textTransform: "none" }}
-            variant="outlined"
-            style={{
-              borderColor: "black",
-              color: "black",
-              fontSize: "14px",
-              padding: "3px 7px",
-            }}
-          >
-            <IconButton aria-label="cart">
-              <Badge badgeContent={4} color="error">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-            &nbsp; Cart
-          </Button>
+          
           <Button
             sx={{ textTransform: "none" }}
             variant="outlined"
