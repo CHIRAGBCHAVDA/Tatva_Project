@@ -11,11 +11,14 @@ import EditProduct from "./EditProduct";
 import ProductListing from "./ProductListing";
 import LoggedInHeader from "./Components/LoggedInHeader";
 import Paper from '@mui/material/Paper';
+import ClubCoordinatorDashboard from "./Components/ClubCoordinatorDashboard";
+import HODDashboard from "./Components/HODDashboard";
+import ProfessorDashboard from "./Components/ProfessorDashboard";
 
 
 
 // function MyComponent() {
-  
+
 //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 //   const handleLogout = () => {
@@ -28,7 +31,7 @@ import Paper from '@mui/material/Paper';
 export default function MyApp() {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     console.clear();
@@ -40,20 +43,20 @@ export default function MyApp() {
     <div class="container">
       <Router>
         <ButtonAppBar></ButtonAppBar>
-        
-         <Switch>
+
+        <Switch>
           <Route exact path="/">
-             <LoginForm/> 
+            <LoginForm />
           </Route>
           <Route path="/Login">
             <LoginForm />
           </Route>
 
-            {/* <Switch> */}
-            <Route path="/Register">
-            <Registration/>
-            </Route>
-            {/* </Switch> */}
+          {/* <Switch> */}
+          <Route path="/Register">
+            <Registration />
+          </Route>
+          {/* </Switch> */}
           <Route path="/Register">
             <Registration />
 
@@ -62,15 +65,36 @@ export default function MyApp() {
             <ProductListing />
 
           </Route>
+          <Route path="/ClubCoordinatorDashboard">
+            <ClubCoordinatorDashboard />
+            <Switch>
+            <Route path="/EditProduct">
+            <EditProduct />
+          </Route>
+            </Switch>
+
+          </Route>
+          <Route path="/HODDashboard">
+            <HODDashboard />
+          </Route>
+
+          <Route path="/ProfessorDahboard">
+            <ProfessorDashboard />
+          </Route>
+
+
           <Route path="/ProductPage">
-          {/* Render your drafts page component */}
-          <ProductPage />
-        </Route>
-           </Switch>
+            {/* Render your drafts page component */}
+            <ProductPage />
+          </Route>
+
+
+
+        </Switch>
+
 
 
 <EditProduct/>
-           
 
         <Footer></Footer>
       </Router>

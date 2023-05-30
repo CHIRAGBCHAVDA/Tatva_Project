@@ -7,6 +7,23 @@
       "password": "password1",
       "id": 1,
       "role": "Principal"
+    },
+    {
+      "firstName": "Hari",
+      "lastName": "Ghoghari",
+      "email": "harimatighoghari2013@gmail.com",
+      "password": "password2",
+      "id": 2,
+      "role": "ClubCoordinator"
+    }
+  ],
+  "Applications": [
+    {
+      "Subject": "Sample Subject",
+      "SecurityLevel": "Urgent",
+      "Description": "Sample description",
+      "FileName": "sample.pdf",
+      "FilePath": "/path/to/sample.pdf"
     }
   ]
 }

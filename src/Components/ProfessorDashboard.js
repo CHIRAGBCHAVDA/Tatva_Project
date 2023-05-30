@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ClubCoordinatorDashboard() {
+export default function ProfessorDashboard() {
   const classes = useStyles();
 
   const history = useHistory();
@@ -59,11 +59,6 @@ export default function ClubCoordinatorDashboard() {
   const handleDraftButtonClick = () => {
     // Navigate to the drafts page
     history.push('/ProductPage');
-  };
-
-  const handleApplyButtonClick = () => {
-    // Navigate to the drafts page
-    history.push('/EditProduct');
   };
 
   return (
@@ -121,65 +116,6 @@ export default function ClubCoordinatorDashboard() {
             minWidth:"100%"
           }}
         >
-           <Card
-                        className={`${classes.card} ${classes.root}`}
-                        style={{ width: "210px", height: "480px", borderRadius: "10px" }}
-                    >
-                        <CardActionArea>
-                            <CardMedia
-                                className={classes.media}
-                                component="img"
-                                width="50%"
-                                image="https://www.shutterstock.com/image-vector/send-logo-design-vector-template-260nw-2258305337.jpg"
-                                alt="green iguana"
-                                style={{
-                                    width: "210px",
-                                    height: "210px",
-                                    backgroundColor: "black",
-                                }}
-                            />
-                            <CardContent>
-                                <Typography variant="h6" style={{ margin: "0px" }}>
-                                    Send
-                                </Typography>
-                                <Typography
-                                    variant="subtitle1"
-                                    style={{
-                                        color: "gray",
-                                        fontWeight: "bold",
-                                    }}
-                                >
-
-                                </Typography>
-                            </CardContent>
-                            <CardContent>
-                                <Typography
-                                    variant="caption"
-                                    style={{
-                                        color: "gray",
-                                        fontWeight: "bold",
-                                    }}
-                                >
-                                    A piece of writing or drawing that is done early in the development of a work to help prepare it in its final form
-                                </Typography>
-                            </CardContent>
-                            <CardContent>
-                                <Button
-                                    onClick={handleApplyButtonClick}
-                                    variant="contained"
-                                    color="error"
-                                    sx={{
-                                        textTransform: "none",
-                                        alignItems: "center",
-                                    }}
-                                    style={{ width: "100%", paddingBottom: "10px" }}
-                                    type="submit"
-                                >
-                                    Create
-                                </Button>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
           <Card
             className={`${classes.card} ${classes.root}`}
             style={{width: "210px",height:"480px",borderRadius: "10px" }}
@@ -257,7 +193,7 @@ export default function ClubCoordinatorDashboard() {
               />
               <CardContent>
                 <Typography variant="h6" style={{ margin: "0px" }}>
-                  Approved
+                  Approve
                 </Typography>
                 <Typography
                   variant="subtitle1"
@@ -316,7 +252,7 @@ export default function ClubCoordinatorDashboard() {
               />
               <CardContent>
                 <Typography variant="h6" style={{ margin: "0px" }}>
-                  Declined
+                  Decline
                 </Typography>
                 <Typography
                   variant="subtitle1"
@@ -375,7 +311,7 @@ export default function ClubCoordinatorDashboard() {
               />
               <CardContent>
                 <Typography variant="h6" style={{ margin: "0px" }}>
-                  Remarked
+                  Remarks
                 </Typography>
                 <Typography
                   variant="subtitle1"

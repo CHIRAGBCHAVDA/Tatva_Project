@@ -16,13 +16,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ProductListing from "../ProductListing";
 import { useHistory } from 'react-router-dom';
-import ClubCoordinatorDashboard from '../Components/ClubCoordinatorDashboard'
+import ClubCoordinatorDashboard from '../Components/ClubCoordinatorDashboard';
+import HODDashboard from "../Components/HODDashboard";
+import ProfessorDashboard from "../Components/ProfessorDashboard";
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
-const options = ['Option 1', 'Option 2'];
+
 
 const LoginForm = () => {
 
@@ -30,18 +28,6 @@ const LoginForm = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   
-
-  const breadcrumbs = [
-
-    <Typography key="1" color="text.primary">
-      Home
-    </Typography>,
-    <Typography key="2" color="error">
-      Login.
-
-    </Typography>,
-
-  ];
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useHistory();
@@ -61,13 +47,14 @@ const LoginForm = () => {
             history.push('/ProductListing');
           }
           if (values.role === 'HOD') {
-            return <ProductListing />;
+            history.push('/HODDashboard');
           }
           if (values.role === 'Professor') {
-            return <ProductListing />;
+            history.push('/ProfessorDahboard');
+            
           }
           if (values.role === 'ClubCoordinator') {
-            return <ClubCoordinatorDashboard />;
+           history.push('/ClubCoordinatorDashboard');
           }
 
         }
