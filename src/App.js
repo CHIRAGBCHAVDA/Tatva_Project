@@ -1,8 +1,8 @@
-import * as React from "react";
+import React, { useState } from "react";
 import ButtonAppBar from "./ButtonAppBar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import LoginForm from "./Components/LoginForm";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
 import Registration from "./Registration";
 import Footer from "./Footer";
 import "@fontsource/roboto/300.css";
@@ -14,43 +14,64 @@ import Paper from '@mui/material/Paper';
 
 
 
-function MyComponent() {
+// function MyComponent() {
   
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  
-}
-
-
-
-
-
+//   const handleLogout = () => {
+//     setIsLoggedIn(false);
+//   }
+// }
+// const handleLogout = () => {
+//   setIsLoggedIn(false);
+// }
 export default function MyApp() {
+  const history = useHistory();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    console.clear();
+    console.log("#################");
+    history.push('/Login');
+  };
+
   return (
     <div class="container">
       <Router>
         <ButtonAppBar></ButtonAppBar>
-         {/* <Switch>
+        
+         <Switch>
           <Route exact path="/">
              <LoginForm/> 
           </Route>
           <Route path="/Login">
             <LoginForm />
-            <Switch>
+          </Route>
+
+            {/* <Switch> */}
             <Route path="/Register">
             <Registration/>
             </Route>
-            </Switch>
-          </Route>
+            {/* </Switch> */}
           <Route path="/Register">
             <Registration />
 
           </Route>
-           </Switch> */}
+          <Route path="/ProductListing">
+            <ProductListing />
 
-           <LoginForm/>
-           <EditProduct />
-           <ProductPage />
-           <ProductListing />
+          </Route>
+          <Route path="/ProductPage">
+          {/* Render your drafts page component */}
+          <ProductPage />
+        </Route>
+           </Switch>
+
+
+<EditProduct/>
+           
+
         <Footer></Footer>
       </Router>
     </div>

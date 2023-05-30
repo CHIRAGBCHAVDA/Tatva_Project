@@ -15,6 +15,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ProductListing from "../ProductListing";
+import { useHistory } from 'react-router-dom';
+import ClubCoordinatorDashboard from '../Components/ClubCoordinatorDashboard'
 
 function handleClick(event) {
   event.preventDefault();
@@ -27,9 +29,7 @@ const LoginForm = () => {
   const [role, setRole] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleRoleChange = (e) => {
-    setRole(e.target.value);
-  };
+  
 
   const breadcrumbs = [
 
@@ -37,20 +37,40 @@ const LoginForm = () => {
       Home
     </Typography>,
     <Typography key="2" color="error">
-      Login
+      Login.
+
     </Typography>,
 
   ];
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const history = useHistory();
 
   const handleForm = async (values, { resetForm }) => {
     console.log("Form is submitted", values);
+    console.log("Form is submitted", values.role);
     try {
-      const response = await axios.get(`http://localhost:8000/users?email=${values.email}&password=${values.password}`);
+
+      const response = await axios.get(`http://localhost:8000/users?email=${values.email}&password=${values.password}&role=${values.role}`);
       if (response.data.length > 0) {
         setIsLoggedIn(true);
         toast.success('Login successful!', { autoClose: 2000 });
+        if (setIsLoggedIn) {
+          // Render different pages based on selected role
+          if (values.role === 'Principal') {
+            history.push('/ProductListing');
+          }
+          if (values.role === 'HOD') {
+            return <ProductListing />;
+          }
+          if (values.role === 'Professor') {
+            return <ProductListing />;
+          }
+          if (values.role === 'ClubCoordinator') {
+            return <ClubCoordinatorDashboard />;
+          }
+
+        }
         resetForm();
 
       } else {
@@ -59,23 +79,9 @@ const LoginForm = () => {
     } catch (error) {
       console.log(error);
     }
-    if (role) {
-      setLoggedIn(true);
-    }
   };
 
-  if (loggedIn) {
-    // Render different pages based on selected role
-    if (role === 'Principal') {
-      return <ProductListing />;
-    }
-    if (role === 'HOD') {
-      return <ProductListing />;
-    }
-    if (role === 'Professor') {
-      return <ProductListing />;
-    }
-  }
+  
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -86,10 +92,15 @@ const LoginForm = () => {
       .required("Enter Password"),
   });
 
+  if(isLoggedIn){
+   return <ProductListing />
+  }
+else{
   return (
+    
     <div class="container">
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: "",role:"" }}
         validationSchema={validationSchema}
         onSubmit={handleForm}
       >
@@ -285,7 +296,7 @@ const LoginForm = () => {
                               <select
                                 id="role"
                                 name="role"
-                                onChange={handleRoleChange}
+                                onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.role}
                               >
@@ -293,6 +304,7 @@ const LoginForm = () => {
                                 <option value="Principal">Principal</option>
                                 <option value="HOD">HOD</option>
                                 <option value="Professor">Professor</option>
+                                <option value="ClubCoordinator">Club Coordinator</option>
                               </select>
                               {touched.role && errors && errors.role}
                             </label>
@@ -325,6 +337,9 @@ const LoginForm = () => {
       {isLoggedIn}
     </div>
   );
+}
+
+ 
 };
 
 export default LoginForm;

@@ -10,7 +10,7 @@ import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 
-export default function LoggedInHeader() {
+const LoggedInHeader = ({ handleLogout }) => {
 
   const styles = {
     buttonContainer: {
@@ -54,24 +54,19 @@ export default function LoggedInHeader() {
           ></IconButton>
 
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tV6t14yHTNfrJ49kuDtorFtJ6XYSl7cclWvmiRvp&s"
+            src="https://www.marcotls.eu/wp-content/uploads/2020/01/paperless_3-1024x768.jpg"
             alt="Logo"
-            style={{ height: "41px" }}
+            style={{ height: "70px", width:"110px" }}
           />
           <Typography
             variant="h6"
             component="div"
             sx={{ flexGrow: 1 }}
           ></Typography>
-          <Button sx={{ textTransform: "none" }} style={styles.button}>
-            <Link to="/Update">Books</Link>
-          </Button>
-          <span style={styles.verticalLine}></span>
-          <Button sx={{ textTransform: "none" }} style={styles.button}>
-            <Link to="/Update">Update Books</Link>
-          </Button>
+          
           
           <Button
+            onClick={handleLogout}
             sx={{ textTransform: "none" }}
             variant="outlined"
             style={{
@@ -81,10 +76,12 @@ export default function LoggedInHeader() {
               padding: "3px 7px",
             }}
           >   
-            &nbsp; Log Out
+           Log Out
           </Button>
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
+
+export default LoggedInHeader;

@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProductListing() {
+export default function ClubCoordinatorDashboard() {
   const classes = useStyles();
 
   const history = useHistory();

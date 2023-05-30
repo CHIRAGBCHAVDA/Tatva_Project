@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Divider from "@mui/material/Divider";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditProduct() {
   const handleEditPdtForm = (data) => {
@@ -36,6 +38,12 @@ function EditProduct() {
       year: 2003,
     },
   ];
+
+  function handleEditorChange (event, editor){
+    const data = editor.getData();
+    console.log(data);
+  };
+
 
   return (
     <div>
@@ -109,7 +117,7 @@ function EditProduct() {
                             {touched.firstName && errors && errors.firstName}
                           </label>
                         </Grid>
-                        <Grid item xs={6}>
+                        {/* <Grid item xs={6}>
                           <label>
                             <Typography
                               variant="h6"
@@ -130,17 +138,9 @@ function EditProduct() {
                             />
                             {touched.lastName && errors && errors.lastName}
                           </label>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                    <Box sx={{ width: "100%", paddingTop: "20px" }}>
-                      <Grid
-                        container
-                        rowSpacing={1}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                        style={{ marginBottom: "20px" }}
-                      >
-                        <Grid item xs={12}>
+                        </Grid> */}
+
+                        <Grid item xs={6}>
                           <label>
                             <Typography
                               variant="h6"
@@ -158,6 +158,39 @@ function EditProduct() {
                             </select>
                           </label>
                         </Grid>
+
+                        
+
+
+                      </Grid>
+                    </Box>
+                    <Box sx={{ width: "100%", paddingTop: "20px" }}>
+                      <Grid
+                        container
+                        rowSpacing={1}
+                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                      >
+                        <Grid item xs={12}>
+                          <label>
+                            <Typography variant="h6" style={{  fontSize: '15px' }}>
+                              Description*
+                            </Typography>
+                            <div style={{ maxHeight: '300px' }}>
+                            <CKEditor
+                              editor={ClassicEditor}
+                              // data={values.lastName} // Replace "values.lastName" with the appropriate value from your state/props
+                              onChange={(event, editor) => {
+                                const data = editor.getData();
+                                handleChange('lastName')(data); // Replace "handleChange('lastName')" with your actual handleChange function
+                              }}
+                            />
+                            </div>
+                            
+                            {touched.lastName && errors && errors.lastName}
+                          </label>
+                        </Grid>
+
+
                         {/* <Grid item xs={6}>
                           <label>
                             <Typography
@@ -181,7 +214,7 @@ function EditProduct() {
                         </Grid> */}
                       </Grid>
                     </Box>
-                    <Box sx={{ width: "100%", paddingTop: "20px" }}>
+                    <Box sx={{ width: "100%"}}>
                       <Grid
                         container
                         rowSpacing={1}

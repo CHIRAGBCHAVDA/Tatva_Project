@@ -130,12 +130,12 @@ function ProductPage() {
               fontWeight: "bold",
             }}
           >
-            Product Page
+            Drafts
           </Typography>
           
           <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto", marginBottom:"50px"}}></Divider>
 
-          <Box sx={{ flexGrow: 1 }}>
+          {/* <Box sx={{ flexGrow: 1 }}>
             <AppBar
               elevation={0}
               position="static"
@@ -175,7 +175,7 @@ function ProductPage() {
                 </Button>
               </Toolbar>
             </AppBar>
-          </Box>
+          </Box> */}
 
           <Paper sx={{ width: "100%" }}>
             <TableContainer
