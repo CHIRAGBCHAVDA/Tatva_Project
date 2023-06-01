@@ -13,34 +13,55 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import axios from 'axios';
 
+const validationSchema = Yup.object().shape({
+  subject: Yup.string().required('Subject is required'),
+  securityLevel: Yup.string().oneOf(['1', '2', '3'], 'Invalid security level').required('Security level is required'),
+  description: Yup.string().min(10, 'Description must be at least 10 characters').required('Description is required'),
+  file: Yup.mixed().required('File is required'),
+});
+
+
+const handleForm = async (values, { setSubmitting }) => {
+  //   console.log(values);
+  // fetch('http://localhost:8000/Applications', {
+  //   method: 'POST',
+  //   body: JSON.stringify(values),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log('Data submitted successfully:', data);
+  //     // Reset the form after successful submission
+  //     setSubmitting(false);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error submitting data:', error);
+  //     setSubmitting(false);
+  //   });
+
+  try {
+    console.log(value)
+    const formData = new FormData();
+    formData.append('Subject', values.subject);
+    formData.append('SecurityLevel', values.securityLevel);
+    formData.append('Description', values.description);
+    formData.append('File', values.file.target.value);
+
+    console.log("The form data is : ", formData)
+    const response = await axios.post('http://localhost:8001/api/applications', formData);
+    setSubmitting(false);
+    console.log(response.data); // Optional: Log the response from the server
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 function EditProduct() {
-  const handleEditPdtSubmit = (values) => {
-    console.log("Form is submitted", values);
-  };
   
-
-  const validationSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(3, "Minimum 3 characters required")
-      .required("First name is required."),
-    lastName: Yup.string()
-      .min(3, "Minimum 3 characters required")
-      .required("Last name is required."),
-  });
-
-  const top100Films = [
-    { label: "The Shawshank Redemption", year: 1994 },
-    { label: "The Godfather", year: 1972 },
-    { label: "The Godfather: Part II", year: 1974 },
-    { label: "The Dark Knight", year: 2008 },
-    { label: "12 Angry Men", year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: "Pulp Fiction", year: 1994 },
-    {
-      label: "The Lord of the Rings: The Return of the King",
-      year: 2003,
-    },
-  ];
+  
 
   function handleEditorChange (event, editor){
     const data = editor.getData();
@@ -59,7 +80,7 @@ function EditProduct() {
             file: null,
           }}
           validationSchema={validationSchema}
-          onSubmit={handleEditPdtSubmit}
+          onSubmit={handleForm}
         >
           {({
             values,
@@ -69,6 +90,7 @@ function EditProduct() {
             handleBlur,
             handleSubmit,
             setFieldValue,
+            isSubmitting
           }) => (
             <form onSubmit={handleSubmit}>
               <div
@@ -150,12 +172,12 @@ function EditProduct() {
                               Security Level
                             </Typography>
                             <select
-  id="securityLevel"
-  name="securityLevel"
-  value={values.securityLevel}
-  onChange={handleChange}
-  onBlur={handleBlur}
->
+                            id="securityLevel"
+                            name="securityLevel"
+                            value={values.securityLevel}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          >
                               <option value="1">Urgent</option>
                               <option value="2">Moderate</option>
                               <option value="3">Minor</option>
@@ -261,21 +283,10 @@ function EditProduct() {
                         marginRight: "10px",
                       }}
                       type="submit"
+                      disabled={isSubmitting}
                     >
-                      Save
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="error"
-                      sx={{
-                        textTransform: "none",
-                        alignItems: "center",
-                        marginBottom: "80px",
-                      }}
-                      type="cancel"
-                    >
-                      Cancel
-                    </Button>
+                      Submit
+                    </Button> 
                   </Container>
                 </React.Fragment>
               </div>

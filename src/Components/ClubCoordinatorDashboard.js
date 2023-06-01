@@ -63,7 +63,7 @@ export default function ClubCoordinatorDashboard() {
 
   const handleApplyButtonClick = () => {
     // Navigate to the drafts page
-    history.push('/EditProduct');
+    history.push('/ClubCoordinatorDashboard/EditProduct');
   };
 
   return (

@@ -41,63 +41,45 @@ export default function MyApp() {
 
   return (
     <div class="container">
-      <Router>
-        <ButtonAppBar></ButtonAppBar>
+       <Router>
+    <ButtonAppBar />
 
+    <Switch>
+      <Route exact path="/">
+        <LoginForm />
+      </Route>
+      <Route path="/Login">
+        <LoginForm />
+      </Route>
+      <Route path="/Register">
+        <Registration />
+      </Route>
+      <Route path="/ProductListing">
+        <ProductListing />
+      </Route>
+      <Route path="/ClubCoordinatorDashboard">
         <Switch>
-          <Route exact path="/">
-            <LoginForm />
-          </Route>
-          <Route path="/Login">
-            <LoginForm />
-          </Route>
-
-          {/* <Switch> */}
-          <Route path="/Register">
-            <Registration />
-          </Route>
-          {/* </Switch> */}
-          <Route path="/Register">
-            <Registration />
-
-          </Route>
-          <Route path="/ProductListing">
-            <ProductListing />
-
-          </Route>
-          <Route path="/ClubCoordinatorDashboard">
-            <ClubCoordinatorDashboard />
-            <Switch>
-            <Route path="/EditProduct">
+          <Route path="/ClubCoordinatorDashboard/EditProduct">
             <EditProduct />
           </Route>
-            </Switch>
-
+          <Route>
+            <ClubCoordinatorDashboard />
           </Route>
-          <Route path="/HODDashboard">
-            <HODDashboard />
-          </Route>
-
-          <Route path="/ProfessorDahboard">
-            <ProfessorDashboard />
-          </Route>
-
-
-          <Route path="/ProductPage">
-            {/* Render your drafts page component */}
-            <ProductPage />
-          </Route>
-
-
-
         </Switch>
+      </Route>
+      <Route path="/HODDashboard">
+        <HODDashboard />
+      </Route>
+      <Route path="/ProfessorDashboard">
+        <ProfessorDashboard />
+      </Route>
+      <Route path="/ProductPage">
+        <ProductPage />
+      </Route>
+    </Switch>
 
-
-
-<EditProduct/>
-
-        <Footer></Footer>
-      </Router>
+    <Footer />
+  </Router>
     </div>
   );
 }
