@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import ClubCoordinatorDashboard from "./Components/ClubCoordinatorDashboard";
 import HODDashboard from "./Components/HODDashboard";
 import ProfessorDashboard from "./Components/ProfessorDashboard";
+import AlignItemsList from "./AlignItemsList";
 
 
 
@@ -77,7 +78,7 @@ export default function MyApp() {
         <ProductPage />
       </Route>
     </Switch>
-
+<AlignItemsList/>
     <Footer />
   </Router>
     </div>

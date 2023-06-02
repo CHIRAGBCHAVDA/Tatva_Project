@@ -20,6 +20,17 @@ const validationSchema = Yup.object().shape({
   file: Yup.mixed().required('File is required'),
 });
 
+// const [selectedFile, setSelectedFile] = useState(null);
+
+// const handleFileChange = (event) => {
+//   const file = event.target.files[0];
+//   setSelectedFile(file);
+// };
+
+// const handleFormSubmit = (event) => {
+//   event.preventDefault();
+  
+// };
 
 const handleForm = async (values, { setSubmitting }) => {
   //   console.log(values);
@@ -42,15 +53,33 @@ const handleForm = async (values, { setSubmitting }) => {
   //   });
 
   try {
-    console.log(value)
-    const formData = new FormData();
-    formData.append('Subject', values.subject);
-    formData.append('SecurityLevel', values.securityLevel);
-    formData.append('Description', values.description);
-    formData.append('File', values.file.target.value);
+    console.log(values)
 
-    console.log("The form data is : ", formData)
-    const response = await axios.post('http://localhost:8001/api/applications', formData);
+    let filePath = "";
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        filePath = e.target.result;
+        // Use the filePath as needed (e.g., send it to the server, display it in the UI, etc.)
+        console.log(filePath);
+      };
+      reader.readAsDataURL(values.file);
+    
+    
+    // const formData = new FormData();
+    // formData.append('Subject', values.subject);
+    // formData.append('SecurityLevel', values.securityLevel);
+    // formData.append('Description', values.description);
+    // formData.append('File', filePath);
+
+    const data = {
+      Subject: values.subject,
+      SecurityLevel: values.securityLevel,
+      Description: values.description,
+      File: filePath,
+    };
+
+    console.log("The form data is : ", data)
+    const response = await axios.post('http://localhost:8001/api/applications', data);
     setSubmitting(false);
     console.log(response.data); // Optional: Log the response from the server
   } catch (error) {
