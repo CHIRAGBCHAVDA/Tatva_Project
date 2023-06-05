@@ -15,6 +15,14 @@
       "password": "password2",
       "id": 2,
       "role": "ClubCoordinator"
+    },
+    {
+      "firstName": "Hari",
+      "lastName": "Ghoghi",
+      "email": "harimatighoghari2013@gmail.com",
+      "password": "password3",
+      "id": 2,
+      "role": "ClubCoordinator"
     }
   ],
   "Applications": [

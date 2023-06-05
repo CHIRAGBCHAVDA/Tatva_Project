@@ -44,7 +44,7 @@ const LoginForm = () => {
         if (setIsLoggedIn) {
           // Render different pages based on selected role
           if (values.role === 'Principal') {
-            history.push('/ProductListing');
+            history.push('/PrincipalDashboard');
           }
           if (values.role === 'HOD') {
             history.push('/HODDashboard');

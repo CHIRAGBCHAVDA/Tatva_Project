@@ -75,7 +75,8 @@ const handleForm = async (values, { setSubmitting }) => {
       Subject: values.subject,
       SecurityLevel: values.securityLevel,
       Description: values.description,
-      File: filePath,
+      // File: filePath,
+      FileName:values.file.name
     };
 
     console.log("The form data is : ", data)

@@ -15,6 +15,7 @@ import ClubCoordinatorDashboard from "./Components/ClubCoordinatorDashboard";
 import HODDashboard from "./Components/HODDashboard";
 import ProfessorDashboard from "./Components/ProfessorDashboard";
 import AlignItemsList from "./AlignItemsList";
+import PrincipalDashboard from "./PrincipalDahboard";
 
 
 
@@ -42,45 +43,49 @@ export default function MyApp() {
 
   return (
     <div class="container">
-       <Router>
-    <ButtonAppBar />
+      <Router>
+        <ButtonAppBar />
 
-    <Switch>
-      <Route exact path="/">
-        <LoginForm />
-      </Route>
-      <Route path="/Login">
-        <LoginForm />
-      </Route>
-      <Route path="/Register">
-        <Registration />
-      </Route>
-      <Route path="/ProductListing">
-        <ProductListing />
-      </Route>
-      <Route path="/ClubCoordinatorDashboard">
         <Switch>
-          <Route path="/ClubCoordinatorDashboard/EditProduct">
-            <EditProduct />
+          <Route exact path="/">
+            <LoginForm />
           </Route>
-          <Route>
-            <ClubCoordinatorDashboard />
+          <Route path="/Login">
+            <LoginForm />
+          </Route>
+          <Route path="/Register">
+            <Registration />
+          </Route>
+          <Route path="/PrincipalDashboard">
+            <PrincipalDashboard />
+          </Route>
+          <Route path="/ClubCoordinatorDashboard">
+            <Switch>
+              <Route path="/ClubCoordinatorDashboard/EditProduct">
+                <EditProduct />
+              </Route>
+              <Route path="/ClubCoordinatorDashboard/AlignItemsList">
+                <AlignItemsList />
+              </Route>
+              <Route>
+                <ClubCoordinatorDashboard />
+              </Route>
+            </Switch>
+          </Route>
+          <Route path="/HODDashboard">
+            <HODDashboard />
+          </Route>
+          <Route path="/ProfessorDashboard">
+            <ProfessorDashboard />
+          </Route>
+          <Route path="/AlignItemsList">
+            <AlignItemsList />
           </Route>
         </Switch>
-      </Route>
-      <Route path="/HODDashboard">
-        <HODDashboard />
-      </Route>
-      <Route path="/ProfessorDashboard">
-        <ProfessorDashboard />
-      </Route>
-      <Route path="/ProductPage">
-        <ProductPage />
-      </Route>
-    </Switch>
-<AlignItemsList/>
-    <Footer />
-  </Router>
+        <Footer />
+      </Router>
+      <AlignItemsList />
+
     </div>
   );
 }
