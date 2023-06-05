@@ -15,7 +15,7 @@ import ClubCoordinatorDashboard from "./Components/ClubCoordinatorDashboard";
 import HODDashboard from "./Components/HODDashboard";
 import ProfessorDashboard from "./Components/ProfessorDashboard";
 import AlignItemsList from "./AlignItemsList";
-import PrincipalDashboard from "./PrincipalDahboard";
+import PrincipalDashboard from "./PrincipalDashboard";
 
 
 
@@ -57,7 +57,18 @@ export default function MyApp() {
             <Registration />
           </Route>
           <Route path="/PrincipalDashboard">
-            <PrincipalDashboard />
+          <Switch>
+              <Route path="/PrincipalDashboard/ProductListing">
+                <ProductListing />
+              </Route>
+              <Route path="/PrincipalDashboard/AlignItemsList">
+                <AlignItemsList />
+              </Route>
+              <Route>
+                <PrincipalDashboard />
+              </Route>
+            </Switch>
+           
           </Route>
           <Route path="/ClubCoordinatorDashboard">
             <Switch>

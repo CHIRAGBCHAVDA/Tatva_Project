@@ -21,6 +21,8 @@ import Button from "@mui/material/Button";
 
 
 const useStyles = makeStyles({
+
+  
   card: {
     minWidth: 200,
     margin: 30,
@@ -51,12 +53,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProductListing() {
+export default function PrincipalDashboard() {
   const classes = useStyles();
 
   const history = useHistory();
 
- 
+  const handleInboxButtonClick = () => {
+    // Navigate to the drafts page
+    history.push('/PrincipalDashboard/AlignItemsList');
+  };
+
+  const handleHistoryButtonClick = () => {
+    // Navigate to the drafts page
+    history.push('/PrincipalDashboard/ProductListing');
+  };
 
   return (
     <React.Fragment>
@@ -71,7 +81,7 @@ export default function ProductListing() {
             fontWeight: "bold",
           }}
         >
-          History
+          Dashboard
         </Typography>
 
         <Divider  style={{borderColor:"red", borderBlockEndWidth:"3px",  borderRadius:"10px" ,width:"190px", margin:"auto", marginBottom:"50px"}}></Divider>
@@ -113,7 +123,65 @@ export default function ProductListing() {
             minWidth:"100%"
           }}
         >
-          
+          <Card
+            className={`${classes.card} ${classes.root}`}
+            style={{width: "210px",height:"480px",borderRadius: "10px" }}
+          >
+            <CardActionArea>
+              <CardMedia
+              className={classes.media}
+                component="img"
+                width="50%"
+                image="https://www.shutterstock.com/image-vector/inbox-iconvector-illustration-flat-design-260nw-1130581295.jpg"
+                alt="green iguana"
+                style={{
+                  width: "210px",
+                  height: "210px",
+                  backgroundColor: "black",
+                }}
+              />
+              <CardContent>
+                <Typography variant="h6" style={{ margin: "0px" }}>
+                  Inbox
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  style={{
+                    color: "gray",
+                    fontWeight: "bold",
+                  }}
+                >
+                  
+                </Typography>
+              </CardContent>
+              <CardContent>
+                <Typography
+                  variant="caption"
+                  style={{
+                    color: "gray",
+                    fontWeight: "bold",
+                  }}
+                >
+                  A piece of writing or drawing that is done early in the development of a work to help prepare it in its final form
+                </Typography>
+              </CardContent>
+              <CardContent>
+                <Button
+                onClick={handleInboxButtonClick}
+                  variant="contained"
+                  color="error"
+                  sx={{
+                    textTransform: "none",
+                    alignItems: "center",
+                  }}
+                  style={{ width: "100%", paddingBottom: "10px" }}
+                  type="submit"
+                >
+                  Inbox
+                </Button>
+              </CardContent>
+            </CardActionArea>
+          </Card>
           <Card
             className={classes.card}
             style={{ width: "210px",height:"480px", borderRadius: "10px" }}
@@ -122,7 +190,7 @@ export default function ProductListing() {
               <CardMedia
                 component="img"
                 width="50%"
-                image="https://cdn.xxl.thumbs.canstockphoto.com/check-mark-3d-people-man-person-showing-thumb-up-with-green-check-mark-in-box-stock-illustration_csp10450583.jpg"
+                image="https://www.shutterstock.com/image-vector/history-document-icon-design-vector-260nw-1452921689.jpg"
                 alt="green iguana"
                 style={{
                   width: "223px",
@@ -132,7 +200,7 @@ export default function ProductListing() {
               />
               <CardContent>
                 <Typography variant="h6" style={{ margin: "0px" }}>
-                  Approved
+                  History
                 </Typography>
                 <Typography
                   variant="subtitle1"
@@ -158,6 +226,7 @@ export default function ProductListing() {
               </CardContent>          
               <CardContent>
                 <Button
+                onClick={handleHistoryButtonClick}
                   variant="contained"
                   color="error"
                   sx={{
@@ -167,125 +236,7 @@ export default function ProductListing() {
                   style={{ width: "100%", paddingBottom: "10px" }}
                   type="submit"
                 >
-                  Approved
-                </Button>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card
-            className={classes.card}
-            style={{ width: "210px",height:"480px", borderRadius: "10px" }}
-          >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="50%"
-                image="https://i.pinimg.com/564x/73/46/c5/7346c52ab369abbaa2262019847a5eee.jpg"
-                m
-                alt="green iguana"
-                style={{
-                  width: "210px",
-                  height: "200px",
-                  backgroundColor: "black",
-                }}
-              />
-              <CardContent>
-                <Typography variant="h6" style={{ margin: "0px" }}>
-                  Declined
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  style={{
-                    color: "gray",
-                    fontWeight: "bold",
-                  }}
-                >
-                  
-                </Typography>
-              </CardContent>
-              <CardContent>
-                <Typography
-                  variant="caption"
-                  style={{
-                    color: "gray",
-                    fontWeight: "bold",
-                  }}
-                >
-                Decline is a process marked by a downward trajectory, often involving a reduction in quantity, quality, efficiency, or effectiveness over time.
-                </Typography>
-              </CardContent>
-             
-              <CardContent>
-                <Button
-                  variant="contained"
-                  color="error"
-                  sx={{
-                    textTransform: "none",
-                    alignItems: "center",
-                  }}
-                  style={{ width: "100%", paddingBottom: "10px" }}
-                  type="submit"
-                >
-                  Declined
-                </Button>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card
-            className={classes.card}
-            style={{width: "210px",height:"480px", borderRadius: "10px" }}
-          >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="50%"
-                image="https://media.istockphoto.com/id/1179967286/vector/text-file-or-document-comments-and-remarks-vector-illustration-flat-cartoon-warning-or.jpg?s=612x612&w=0&k=20&c=0WXQN8Ygi-ifcRay_SXfJmv0M-G8zeXX5TpoX-jSR7g="
-                m
-                alt="green iguana"
-                style={{
-                  width: "210px",
-                  height: "200px",
-                  backgroundColor: "black",
-                }}
-              />
-              <CardContent>
-                <Typography variant="h6" style={{ margin: "0px" }}>
-                  Remarked
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  style={{
-                    color: "gray",
-                    fontWeight: "bold",
-                  }}
-                >
-                  
-                </Typography>
-              </CardContent>
-              <CardContent>
-                <Typography
-                  variant="caption"
-                  style={{
-                    color: "gray",
-                    fontWeight: "bold",
-                  }}
-                >
-                 This remark can serve various purposes, offering feedback or suggestions, providing or seeking approval or disapproval.
-                </Typography>
-              </CardContent>
-              
-              <CardContent>
-                <Button
-                  variant="contained"
-                  color="error"
-                  sx={{
-                    textTransform: "none",
-                    alignItems: "center",
-                  }}
-                  style={{ width: "100%", paddingBottom: "10px" }}
-                  type="submit"
-                >
-                  Remarked
+                  History
                 </Button>
               </CardContent>
             </CardActionArea>
