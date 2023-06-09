@@ -9,9 +9,18 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
+import { useHistory } from 'react-router-dom';
 
-const LoggedInHeader = ({ handleLogout }) => {
+const LoggedInHeader = () => {
+  const history = useHistory();
 
+  const handleLogout = () => {
+    // Clear any user-related data or tokens from local storage, session storage, or state variables
+    sessionStorage.removeItem('token');
+    
+    // Redirect to the login page
+    history.push('/login');
+  };
   const styles = {
     buttonContainer: {
       display: "flex",

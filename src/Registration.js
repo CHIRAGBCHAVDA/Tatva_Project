@@ -29,7 +29,7 @@ const Registration = () => {
       password: values.password,
     };
 
-    fetch("http://localhost:8000/users", {
+    fetch("http://localhost:8001/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

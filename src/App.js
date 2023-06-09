@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonAppBar from "./ButtonAppBar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import LoginForm from "./Components/LoginForm";
@@ -16,7 +16,7 @@ import HODDashboard from "./Components/HODDashboard";
 import ProfessorDashboard from "./Components/ProfessorDashboard";
 import AlignItemsList from "./AlignItemsList";
 import PrincipalDashboard from "./PrincipalDashboard";
-
+import withAuth from "./withAuth";
 
 
 // function MyComponent() {
@@ -30,6 +30,8 @@ import PrincipalDashboard from "./PrincipalDashboard";
 // const handleLogout = () => {
 //   setIsLoggedIn(false);
 // }
+
+
 export default function MyApp() {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,22 +43,26 @@ export default function MyApp() {
     history.push('/Login');
   };
 
+
+  
   return (
     <div class="container">
       <Router>
-        <ButtonAppBar />
 
         <Switch>
           <Route exact path="/">
+          <ButtonAppBar />
             <LoginForm />
           </Route>
           <Route path="/Login">
+          <ButtonAppBar />
             <LoginForm />
           </Route>
           <Route path="/Register">
             <Registration />
           </Route>
-          <Route path="/PrincipalDashboard">
+          <Route path="/PrincipalDashboard" component={withAuth(PrincipalDashboard)} >
+            <LoggedInHeader />
           <Switch>
               <Route path="/PrincipalDashboard/ProductListing">
                 <ProductListing />
@@ -70,7 +76,8 @@ export default function MyApp() {
             </Switch>
            
           </Route>
-          <Route path="/ClubCoordinatorDashboard">
+          <Route path="/ClubCoordinatorDashboard" component={withAuth(ClubCoordinatorDashboard)}>
+            <LoggedInHeader/>
             <Switch>
               <Route path="/ClubCoordinatorDashboard/EditProduct">
                 <EditProduct />
@@ -84,19 +91,17 @@ export default function MyApp() {
             </Switch>
           </Route>
           <Route path="/HODDashboard">
+          <LoggedInHeader/>
             <HODDashboard />
           </Route>
           <Route path="/ProfessorDashboard">
+          <LoggedInHeader/>
             <ProfessorDashboard />
-          </Route>
-          <Route path="/AlignItemsList">
-            <AlignItemsList />
           </Route>
         </Switch>
         <Footer />
       </Router>
-      <AlignItemsList />
-
+      <withAuth />
     </div>
   );
 }
